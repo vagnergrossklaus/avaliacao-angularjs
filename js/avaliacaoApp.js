@@ -1,0 +1,1 @@
+var avaliacaoApp = angular.module('avaliacaoApp', []);

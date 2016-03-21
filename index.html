@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="avaliacaoApp">
+	<head>
+		<title>Avaliação AngularJS</title>		
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/avaliacaoApp.js"></script>
+		<script type="text/javascript" src="js/controller/formCtrl.js"></script>
+	</head>
+	<body ng-controller=FormCtrl>
+		<div class="container">
+			<div class="jumbotron">
+				<form id="form">
+					<div class="row">
+						<div class="col-xs-4">
+							<legend ng-hide="clickedEdit">Cadastrar</legend>
+							<legend ng-show="clickedEdit">Editar</legend>
+							<div class="form-group col-xs-12">
+							    <label for="name">Nome</label>
+							    <input type="text" class="form-control" ng-model="name" id="name">
+						  	</div>
+						  	<div class="form-group col-xs-12">
+							    <label for="email">e-Mail</label>
+							    <input type="email" class="form-control" ng-model="email" id="email">
+						  	</div>
+						  	<div class="form-group col-xs-12">
+							    <label for="phone">Telefone</label>
+							    <input type="text" class="form-control" ng-model="phone" id="phone" placeholder="(  )    -    ">
+						  	</div>
+						  	<div class="col-xs-12" ng-hide="clickedEdit">
+								<button type="submit" class="btn btn-primary pull-right" ng-click="addContact(name, email, phone)">Adicionar</button>
+							</div>
+							<div class="col-xs-12" ng-show="clickedEdit">
+								<button type="submit" class="btn btn-danger pull-right" ng-click="cancel()">Cancelar</button>
+								<button type="submit" class="btn btn-primary pull-right" ng-click="saveContact(name, email, phone)">Salvar</button>
+							</div>
+					  	</div>
+					  	<div class="col-xs-8">
+					  		<table class="table">
+								<thead>
+									<tr>
+										<th>Nome</th>
+										<th>e-Mail</th>
+										<th>Telefone</th>
+										<th>Opções</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in contactList">
+										<td ng-bind="item.name"></td>
+										<td ng-bind="item.email"></td>
+										<td ng-bind="item.phone"></td>
+										<td>
+											<button class="btn btn-danger" ng-click="deleteContact($index)">
+												<i class="glyphicon glyphicon-trash"></i>
+											</button>
+											<button class="btn btn-success" ng-click="editContact($index)">
+												<i class="glyphicon glyphicon-pencil"></i>
+											</button>											
+										</td>
+									</tr>
+								</tbody>
+							</table>
+					  	</div>
+				  	</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
